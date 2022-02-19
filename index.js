@@ -1,22 +1,5 @@
 'use strict'
-
-const wordList = [
-    'plane',
-    'plate',
-    'kitty',
-    'crane',
-    'shift',
-    'apple',
-    'tired',
-    'talks',
-    'tired',
-    'kites',
-    'point',
-    'fails',
-    'tiles',
-    'stale',
-    'mines',
-]
+import { wordList } from "./wordList.js";
 
 const winningWord = wordList[Math.floor(Math.random()*wordList.length)];
 console.log(winningWord);
