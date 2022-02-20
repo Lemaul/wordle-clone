@@ -1,8 +1,8 @@
 'use strict'
-import { wordList } from "./wordList.js";
+import {wordList} from "./wordList.js";
 
-const winningWord = wordList[Math.floor(Math.random()*wordList.length)];
-console.log(winningWord);
+const winningWord = wordList[Math.floor(Math.random() * wordList.length)];
+// console.log(winningWord);
 
 let grid = document.getElementById('grid');
 let currentAttemptNumber = 0;
@@ -30,8 +30,7 @@ let pressedLetter = (e, tile) => {
             currentColumnNumber++;
         }
         tile.textContent = e.key;
-    }
-    else {
+    } else {
         tile.textContent = tile.textContent || e.key;
     }
     tile.setAttribute("data-letter", "notConfirmed");
@@ -44,25 +43,30 @@ let pressedBackspace = (tile) => {
             currentColumnNumber--;
         }
         tile.textContent = "";
-    }
-    else {
+    } else {
         tile.textContent = "";
     }
     tile.removeAttribute("data-letter")
 }
 
 const win = () => {
-    alert(`You won on attempt number ${currentAttemptNumber+1}\nRefresh to play again`);
-    pressedLetter = () => {};
-    pressedBackspace = () => {};
-    pressedEnter = () => {};
+    alert(`You won on attempt number ${currentAttemptNumber + 1}\nRefresh to play again`);
+    pressedLetter = () => {
+    };
+    pressedBackspace = () => {
+    };
+    pressedEnter = () => {
+    };
 }
 
 const lose = () => {
     alert('You lost!!\nRefresh to play again');
-    pressedLetter = () => {};
-    pressedBackspace = () => {};
-    pressedEnter = () => {};
+    pressedLetter = () => {
+    };
+    pressedBackspace = () => {
+    };
+    pressedEnter = () => {
+    };
 }
 
 const notEnoughLetters = () => {
@@ -74,30 +78,13 @@ const notInWordList = () => {
 }
 
 const colorCurrentAttempt = (row) => {
-    Array.from(row.children).forEach((tile, i) => {
-        const tileText = tile.textContent;
-        const indexes = [...winningWord].reduce((indexes, char, idx) => {
-           return char === tileText ? [...indexes, idx] : indexes
-        }, []);
-        if (indexes.length === 0) {
-            tile.setAttribute("data-letter", "absent");
-        }
-        else if (indexes.includes(i)) {
-            tile.setAttribute("data-letter", "correct");
-        }
-        else {
-            tile.setAttribute("data-letter", "present");
-        }
-    })
 }
 
 let pressedEnter = (row) => {
     let word = "";
-    Array.from(row.children).forEach(
-        tile => word += tile.textContent
-    );
+    Array.from(row.children).forEach(tile => word += tile.textContent);
 
-    if (word.length < 5) {
+    if (word.length < row.length) {
         notEnoughLetters();
         return;
     }
@@ -112,13 +99,10 @@ let pressedEnter = (row) => {
         if (word !== winningWord) {
             currentAttemptNumber++;
             currentColumnNumber = 0;
-        }
-        else {
+        } else {
             win();
         }
-    }
-    // todo export into a function once there will be animation and stuff
-    else {
+    } else {
         if (word === winningWord) {
             win();
             return;
