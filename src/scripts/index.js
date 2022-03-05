@@ -1,5 +1,6 @@
 'use strict';
 import { wordList } from './wordList.js';
+import { win, lose, notEnoughLetters, notInWordList } from './gameStates.js';
 
 const winningWord = wordList[Math.floor(Math.random() * wordList.length)];
 console.log(winningWord);
@@ -49,32 +50,6 @@ let pressedBackspace = tile => {
     tile.removeAttribute('data-letter');
 };
 
-const win = () => {
-    alert(
-        `You won on attempt number ${
-            currentAttemptNumber + 1
-        }\nRefresh to play again`
-    );
-    pressedLetter = () => {};
-    pressedBackspace = () => {};
-    pressedEnter = () => {};
-};
-
-const lose = () => {
-    alert('You lost!!\nRefresh to play again');
-    pressedLetter = () => {};
-    pressedBackspace = () => {};
-    pressedEnter = () => {};
-};
-
-const notEnoughLetters = () => {
-    alert('not enough letters!');
-};
-
-const notInWordList = () => {
-    alert('not in word list!');
-};
-
 const colorCurrentAttempt = row => {
     let letterOccurrences = getLetterOccurences();
     let currentLetters = Array.from(row.children).map(tile => tile.textContent);
@@ -115,7 +90,7 @@ let pressedEnter = row => {
     let word = '';
     Array.from(row.children).forEach(tile => (word += tile.textContent));
 
-    if (word.length < row.length) {
+    if (word.length < row.children.length) {
         notEnoughLetters();
         return;
     }
