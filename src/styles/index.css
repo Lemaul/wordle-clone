@@ -1,4 +1,4 @@
-:root{
+:root {
     --text-color: #ffffff;
     --color-tone-2: #818384;
     --color-tone-3: #565758;
@@ -27,7 +27,8 @@
     font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
-html, body {
+html,
+body {
     background-color: var(--bg-color);
     color: var(--text-color);
     text-align: center;
@@ -59,25 +60,24 @@ hr {
     user-select: none;
 }
 
-.tile[data-letter="notConfirmed"] {
+.tile[data-letter='notConfirmed'] {
     border-color: var(--color-tone-2);
 }
 
-.tile[data-letter="absent"] {
+.tile[data-letter='absent'] {
     background-color: var(--color-absent);
     border-color: var(--color-absent);
 }
 
-.tile[data-letter="present"] {
+.tile[data-letter='present'] {
     background-color: var(--color-present);
     border-color: var(--color-present);
 }
 
-.tile[data-letter="correct"] {
+.tile[data-letter='correct'] {
     background-color: var(--color-correct);
     border-color: var(--color-correct);
 }
-
 
 .row {
     display: flex;
