@@ -114,6 +114,7 @@ let pressedEnter = row => {
         if (word === winningWord) {
             win(currentAttemptNumber);
             endGame();
+            return;
         }
         lose();
         endGame();
