@@ -1,6 +1,7 @@
 import { winningWord } from './index.js';
 import { wordList } from './wordList.js';
 import { win, lose, notEnoughLetters, notInWordList } from './gameStates.js';
+import { updateKeyboard } from './keyboard.js';
 
 let grid = document.getElementById('grid');
 let currentAttemptNumber = 0;
@@ -101,6 +102,7 @@ let pressedEnter = row => {
     }
 
     colorCurrentAttempt(row);
+    updateKeyboard(row);
 
     if (row.nextSibling) {
         if (word !== winningWord) {
@@ -114,6 +116,7 @@ let pressedEnter = row => {
         if (word === winningWord) {
             win(currentAttemptNumber);
             endGame();
+            return;
         }
         lose();
         endGame();

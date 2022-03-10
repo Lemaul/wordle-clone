@@ -6,24 +6,21 @@
     --color-tone-5: #272729;
     --color-tone-6: #1a1a1b;
     --bg-color: #121213;
-    --color-nav-hover: #2f2f31;
-    --green: #6aaa64;
-    --darkendGreen: #538d4e;
-    --yellow: #c9b458;
-    --darkendYellow: #b59f3b;
-    --lightGray: #d8d8d8;
     --gray: #86888a;
     --darkGray: #939598;
     --black: #212121;
     --orange: #f5793a;
     --blue: #85c0f9;
-    --color-present: var(--darkendYellow);
-    --color-correct: var(--darkendGreen);
+    --color-present: #b59f3b;
+    --color-correct: #538d4e;
     --color-absent: var(--color-tone-4);
     --key-bg: var(--color-tone-2);
     --key-bg-present: var(--color-present);
     --key-bg-correct: var(--color-correct);
     --key-bg-absent: var(--color-absent);
+    --letter-key-w: 2.375rem;
+    --letter-key-h: 3rem;
+    --letter-key-m: 3px;
     font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -60,30 +57,60 @@ hr {
     user-select: none;
 }
 
-.tile[data-letter='notConfirmed'] {
-    border-color: var(--color-tone-2);
-}
-
-.tile[data-letter='absent'] {
-    background-color: var(--color-absent);
-    border-color: var(--color-absent);
-}
-
-.tile[data-letter='present'] {
-    background-color: var(--color-present);
-    border-color: var(--color-present);
-}
-
-.tile[data-letter='correct'] {
-    background-color: var(--color-correct);
-    border-color: var(--color-correct);
-}
-
 .row {
     display: flex;
 }
 
+.letter-key {
+    display: flex;
+    width: var(--letter-key-w);
+    height: var(--letter-key-h);
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    margin: var(--letter-key-m);
+    border-radius: 6%;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.functional-key {
+    width: calc(var(--letter-key-w) * 1.5 + var(--letter-key-m));
+}
+
+.half-key {
+    width: 1rem;
+    background-color: transparent;
+}
+
+#centering-container {
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
 #grid {
-    display: inline-block;
     margin: auto;
+}
+
+#keyboard {
+    margin: auto;
+}
+
+[data-letter='notConfirmed'] {
+    border-color: var(--color-tone-2);
+}
+
+[data-letter='absent'] {
+    background-color: var(--color-absent);
+    border-color: var(--color-absent);
+}
+
+[data-letter='present'] {
+    background-color: var(--color-present);
+    border-color: var(--color-present);
+}
+
+[data-letter='correct'] {
+    background-color: var(--color-correct);
+    border-color: var(--color-correct);
 }
