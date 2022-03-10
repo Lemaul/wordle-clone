@@ -20,15 +20,15 @@ export const drawGrid = () => {
     }
 };
 
-let pressedLetter = (e, tile) => {
+let pressedLetter = (key, tile) => {
     if (tile.nextSibling) {
         if (tile.textContent) {
             tile = tile.nextSibling;
             currentColumnNumber++;
         }
-        tile.textContent = e.key;
+        tile.textContent = key;
     } else {
-        tile.textContent = tile.textContent || e.key;
+        tile.textContent = tile.textContent || key;
     }
     tile.setAttribute('data-letter', 'notConfirmed');
 };
@@ -123,13 +123,21 @@ let pressedEnter = row => {
     }
 };
 
-function updateGrid(e) {
+export const updateGrid = e => {
     let row = grid.children[currentAttemptNumber];
     let tile = row.children[currentColumnNumber];
-    const letterCode = e.key.charCodeAt(0);
-    if (letterCode >= 97 && letterCode <= 122) pressedLetter(e, tile);
-    else if (e.key === 'Backspace') pressedBackspace(tile);
-    else if (e.key === 'Enter') pressedEnter(row);
-}
+    let letterCode = 0;
+    let key = '';
+    if (e.type === 'keydown') {
+        letterCode = e.key.charCodeAt(0);
+        key = e.key;
+    } else if (e.type === 'click') {
+        letterCode = e.target.textContent.charCodeAt(0);
+        key = e.target.textContent;
+    }
+    if (key === 'Backspace' || key === 'del') pressedBackspace(tile);
+    else if (key === 'Enter' || key === 'enter') pressedEnter(row);
+    else if (letterCode >= 97 && letterCode <= 122) pressedLetter(key, tile);
+};
 
 document.addEventListener('keydown', e => updateGrid(e));

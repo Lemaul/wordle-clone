@@ -1,5 +1,6 @@
 import { keysOrder } from './keysOrder.js';
 import { winningWord } from './index.js';
+import { updateGrid } from './grid.js';
 
 let keyboard = document.getElementById('keyboard');
 
@@ -14,6 +15,7 @@ export const drawKeyboard = () => {
             keyboardKey.classList.add('letter-key');
             keyboardKey.id = `key-${key}`;
             keyboardKey.textContent = key;
+            keyboardKey.addEventListener('click', e => updateGrid(e));
             if (!key) {
                 keyboardKey.classList.add('half-key');
             }
